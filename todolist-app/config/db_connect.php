@@ -1,6 +1,5 @@
 <?php
 
-
 $host = 'mysql';
 $dbname = 'todolist';
 $user = 'root';
