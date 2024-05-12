@@ -89,8 +89,6 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - **Variables d'Environnement** : Configure phpMyAdmin pour se connecter au service `mysql`.
 - **Ports** : Le port 80 du conteneur (port par défaut de phpMyAdmin) est mappé sur le port 7851 de l'hôte.
 
-
-
 ## Auteurs
 
 - [Harry RICHMOND](https://github.com/RogerBytes)
