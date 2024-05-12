@@ -23,7 +23,27 @@ Puis mon premier push (en lui disant de passer sur le repo distant) :
 
 ### Container docker
 
-Afin de pouvoir facilement deployer le projet je créé un `compose.yml` qui sera utilisé par docker via `docker compose`.
+Afin de pouvoir facilement deployer le projet j'utilise un `compose.yml` et un `Dockerfile` qui seront utilisés par docker via `docker compose`.
+
+Définit trois services : web, mysql et phpmyadmin.
+Le service web :
+Construit l'image à partir du Dockerfile présent dans le répertoire courant (.).
+Dépend du service mysql pour s'exécuter.
+Utilise la redirection de port pour que le port 8851 de l'hôte soit mappé au port 80 du conteneur.
+Montage d'un volume pour synchroniser le répertoire courant de l'hôte avec /var/www/html à l'intérieur du conteneur.
+Définit des variables d'environnement pour la configuration de l'application web.
+Le service mysql :
+Utilise l'image mariadb, une variante populaire de MySQL.
+Définit un mot de passe root pour la base de données.
+Redirige le port 3851 de l'hôte vers le port 3306 du conteneur.
+Le service phpmyadmin :
+Utilise l'image phpmyadmin pour administrer la base de données MySQL/MariaDB.
+Dépend du service mysql pour s'exécuter.
+Configure l'accès à phpMyAdmin pour se connecter au service mysql.
+Redirige le port 7851 de l'hôte au port 80 du conteneur.
+
+
+
 
 ---
 
