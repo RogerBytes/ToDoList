@@ -23,7 +23,19 @@ Puis mon premier push (en lui disant de passer sur le repo distant) :
 
 ### Container docker
 
-Afin de pouvoir facilement deployer le projet j'utilise un `compose.yml` et un `Dockerfile` qui seront utilisés par docker via `docker compose`.
+Afin de pouvoir facilement deployer le projet j'utilise Docker.  
+
+Le `Dockerfile` est utilisé pour créer une ou plusieurs images Docker personnalisées. Ces images définissent l'environnement de l'application, y compris le système d'exploitation de base, les logiciels installés, les fichiers de votre application, les variables d'environnement, et plus encore.  
+
+Le fichier `docker-compose.yml` est utilisé pour définir et exécuter une pile de conteneurs Docker (multi-conteneurs). Ces conteneurs sont des instances en cours d'exécution créées à partir des images Docker. Docker Compose vous permet de configurer plusieurs conteneurs à la fois, de les relier ensemble, de configurer des volumes, des réseaux, etc.
+
+#### Dockerfile
+
+Un Dockerfile est un fichier texte qui contient des instructions pour construire une image Docker. Une image Docker est un modèle léger, autonome et exécutable qui inclut tout ce qui est nécessaire pour exécuter une application : le code, un runtime, des bibliothèques, des variables d'environnement et des fichiers de configuration.
+
+
+
+ un `compose.yml` et un `Dockerfile` qui seront utilisés par docker via `docker compose`.
 
 Définit trois services : web, mysql et phpmyadmin.
 Le service web :
