@@ -31,31 +31,42 @@ Le fichier `docker-compose.yml` est utilisé pour définir et exécuter une pile
 
 #### Dockerfile
 
-Un Dockerfile est un fichier texte qui contient des instructions pour construire une image Docker. Une image Docker est un modèle léger, autonome et exécutable qui inclut tout ce qui est nécessaire pour exécuter une application : le code, un runtime, des bibliothèques, des variables d'environnement et des fichiers de configuration.
+Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officielle `php:8.2-apache`. L'image résultante est configurée pour exécuter une application PHP avec le serveur web Apache et supporte l'utilisation des bibliothèques graphiques et la connexion à une base de données MySQL. Voici le détail des instructions :
 
+- `FROM php:8.2-apache`  
+  Définit l'image de base comme `php:8.2-apache`, qui inclut PHP 8.2 et le serveur web Apache prêt à l'emploi.
 
+- `RUN apt update && apt upgrade -y`  
+  Met à jour la liste des packages et effectue une mise à niveau des packages installés pour obtenir les dernières versions de sécurité et de fonctionnalités.
 
- un `compose.yml` et un `Dockerfile` qui seront utilisés par docker via `docker compose`.
+- `RUN apt install -y libfreetype6-dev`  
+  Installe les dépendances nécessaires pour la compilation des extensions PHP, spécifiquement `libfreetype6-dev` pour le support des polices dans les graphiques.
 
-Définit trois services : web, mysql et phpmyadmin.
-Le service web :
-Construit l'image à partir du Dockerfile présent dans le répertoire courant (.).
-Dépend du service mysql pour s'exécuter.
-Utilise la redirection de port pour que le port 8851 de l'hôte soit mappé au port 80 du conteneur.
-Montage d'un volume pour synchroniser le répertoire courant de l'hôte avec /var/www/html à l'intérieur du conteneur.
-Définit des variables d'environnement pour la configuration de l'application web.
-Le service mysql :
-Utilise l'image mariadb, une variante populaire de MySQL.
-Définit un mot de passe root pour la base de données.
-Redirige le port 3851 de l'hôte vers le port 3306 du conteneur.
-Le service phpmyadmin :
-Utilise l'image phpmyadmin pour administrer la base de données MySQL/MariaDB.
-Dépend du service mysql pour s'exécuter.
-Configure l'accès à phpMyAdmin pour se connecter au service mysql.
-Redirige le port 7851 de l'hôte au port 80 du conteneur.
+  `&& docker-php-ext-configure gd --with-freetype=/usr/include/freetype2/`  
+  Configure l'extension GD de PHP pour utiliser la bibliothèque FreeType pour le rendu des polices.
 
+  `&& docker-php-ext-install pdo_mysql gd`  
+  Installe les extensions PHP `pdo_mysql` pour la connexion à MySQL et `gd` pour les fonctionnalités graphiques.
 
+- `RUN apt install -y libcurl4-openssl-dev pkg-config libssl-dev`  
+  Installe les bibliothèques nécessaires pour utiliser le support SSL dans PHP et pour les besoins de CURL avec OpenSSL.
 
+- `RUN a2enmod rewrite`  
+  Active le module Apache `rewrite`, ce qui permet d'utiliser les fichiers `.htaccess` pour la réécriture d'URL, une fonctionnalité courante dans les applications web.
+
+- `# COPY . /var/www/html`  
+  La ligne est commentée, mais si elle était active, elle copierait les fichiers de l'application dans le répertoire `/var/www/html` du conteneur, qui est le document root d'Apache.
+
+- `EXPOSE 80`  
+  Indique que le conteneur écoute sur le port 80, le port HTTP par défaut, ce qui permettra aux clients de se connecter au service web Apache.
+
+##### Utilisation de l'image
+
+Pour construire une image à partir de ce `Dockerfile`, il faut utiliser la commande suivante dans le répertoire contenant le `Dockerfile` :
+
+```sh
+docker build -t nom_de_votre_image
+```
 
 ---
 
