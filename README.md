@@ -23,7 +23,7 @@ Puis mon premier push (en lui disant de passer sur le repo distant) :
 
 ### Container docker
 
-Afin de pouvoir facilement deployer le projet je créé un `compose.yaml` qui sera utilisé par docker via `docker compose`.
+Afin de pouvoir facilement deployer le projet je créé un `compose.yml` qui sera utilisé par docker via `docker compose`.
 
 ---
 
