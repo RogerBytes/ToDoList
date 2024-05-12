@@ -1,10 +1,6 @@
-# Mintage
+# TodoList
 
-<figure>
-  <img src="./DATA/preview.jpg" alt="Preview" title="Screenshot de Mintage">
-</figure>
-
-Ce petit projet est conçu pour automatiser le processus de personnalisation de Linux Mint en installant une suite complète de logiciels open source. De manière simple, les utilisateurs peuvent transformer leur système Linux Mint en un environnement de travail puissant et personnalisé, idéal pour les développeurs, les créateurs de contenu et (bien évidemment) les utilisateurs quotidiens.
+Une application de gestion de tâches (todolist) qui permet aux utilisateurs de gérer efficacement leurs tâches quotidiennes. L'application offre des fonctionnalités pour ajouter et retirer des tâches d'une base de données, assurant la persistance des données. En outre, elle intègre un système d'authentification permettant aux utilisateurs de se connecter et de se déconnecter, garantissant ainsi la sécurité et la personnalisation de l'expérience utilisateur.
 
 ## Présentation
 
