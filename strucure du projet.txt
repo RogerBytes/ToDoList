@@ -1,51 +1,50 @@
 |-- todolist-app/
     |-- src/
         |-- controllers/
-            |-- TaskController.php      // Contrôleur pour les opérations liées aux tâches
-            |-- UserController.php      // Contrôleur pour les opérations liées aux utilisateurs
-            |-- HomeController.php      // Contrôleur pour la page d'accueil et autres vues générales
+            |-- TaskController.php
+            |-- UserController.php
+            |-- HomeController.php
             ...
         |-- models/
-            |-- Task.php                // Modèle pour les tâches
-            |-- User.php                // Modèle pour les utilisateurs
+            |-- Task.php
+            |-- User.php
         |-- views/
             |-- components/
-                |-- header.php          // Template partagé pour l'en-tête
-                |-- footer.php          // Template partagé pour le pied de page
-                |-- navbar.php          // Template pour la barre de navigation
-                |-- sidebar.php         // Template pour la barre latérale
+                |-- header.php
+                |-- footer.php
+                |-- navbar.php
+                |-- sidebar.php
             |-- tasks/
-                |-- index.php           // Vue pour afficher la liste des tâches
-                |-- create.php          // Vue pour le formulaire d'ajout d'une nouvelle tâche
-                |-- edit.php            // Vue pour le formulaire de modification d'une tâche
-                |-- show.php            // Vue pour afficher les détails d'une tâche spécifique
-                |-- delete.php          // Vue pour confirmer la suppression d'une tâche
+                |-- index.php
+                |-- create.php
+                |-- edit.php
+                |-- show.php
+                |-- delete.php
             |-- users/
-                |-- login.php           // Vue pour la page de connexion
-                |-- register.php        // Vue pour la page d'inscription
-                |-- change_password.php // Vue pour le formulaire de changement de mot de passe
-                |-- forgot_password.php // Vue pour la réinitialisation du mot de passe
-                |-- user_list.php       // Vue pour la liste des utilisateurs (pour l'admin)
+                |-- login.php
+                |-- register.php
+                |-- change_password.php
+                |-- forgot_password.php
+                |-- user_list.php
             |-- home/
-                |-- index.php           // Vue pour la page d'accueil
+                |-- index.php
     |-- config/
-        |-- database.php                // Fichier de configuration de la base de données
-        |-- app.php                     // Fichier de configuration principale de l'application
-        |-- routes.php                  // Fichier de définition des routes de l'application
-        |-- middleware.php              // Fichier de configuration des middlewares
-        |-- db_connect.php              // Fichier de connexion à la bdd
-        ...
+        |-- database.php
+        |-- app.phpde l'application
+        |-- routes.php
+        |-- middleware.php
+        |-- db_connect.php
     |-- public/
         |-- css/
-            |-- style.css               // Feuille de style principale
-            |-- tasks.css               // Feuille de style spécifique aux vues des tâches
-            |-- users.css               // Feuille de style spécifique aux vues des utilisateurs
+            |-- style.css
+            |-- tasks.css
+            |-- users.css
         |-- js/
-            |-- app.js                  // Script JavaScript principal
-            |-- tasks.js                // Script spécifique aux tâches
-            |-- users.js                // Script spécifique aux utilisateurs
-        |-- index.php                   // Le point d'entrée principal de l'application
-        |-- router.php                  // Le fichier qui contient la logique de routage
+            |-- app.js
+            |-- tasks.js
+            |-- users.js
+        |-- index.php
+        |-- router.php
 |-- .gitignore
 |-- docker-compose.yml
 |-- Dockerfile
