@@ -146,6 +146,10 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
 
+## Configuration de la base de données
+
+
+
 ## Auteurs
 
 - [Harry RICHMOND](https://github.com/RogerBytes)
