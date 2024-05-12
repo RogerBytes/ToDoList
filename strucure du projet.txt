@@ -33,6 +33,7 @@
         |-- app.php                     // Fichier de configuration principale de l'application
         |-- routes.php                  // Fichier de définition des routes de l'application
         |-- middleware.php              // Fichier de configuration des middlewares
+        |-- db_connect.php              // Fichier de connexion à la bdd
         ...
     |-- public/
         |-- css/
