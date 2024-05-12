@@ -148,7 +148,20 @@ php -r "unlink('composer-setup.php');"
 
 ## Configuration de la base de données
 
+Je me connecte au container avec
 
+```sh
+docker exec -it serverMySQL851 bash
+```
+
+Dans le nested shell, je me connecte à maria db avec
+
+```sh
+mariadb -u root -p
+# Pour quitter le client de mariaDB, il faut utiliser la commande "quit"
+```
+
+et tape le mot de passe ("root" en l’occurrence).
 
 ## Auteurs
 
