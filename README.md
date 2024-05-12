@@ -136,7 +136,7 @@ nala update
 nala install -y zip unzip 7zip libzip-dev && docker-php-ext-install zip
 ```
 
-Puis depuis [La Page officielle](https://getcomposer.org/download/) attention la longue string change à chaque version:
+Puis depuis [La Page officielle](https://getcomposer.org/download/) (attention la longue string change à chaque version) :
 
 ```bash
 cd

@@ -1,7 +1,7 @@
 Projet : une todolist avec en plus une partie inscription connexion.
 
 Bases faites :
-- Initialisation git en local, plus le local est lié au remote sur le repot distant
+- Initialisation git en local, plus le local est lié au remote sur le repo distant
 - Pile de container docker créé + ajout de composer dans mon container apache.
 - Structure de fichiers terminée
 
