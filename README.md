@@ -115,7 +115,36 @@ Si je veux complètement supprimer les conteneurs et la pile.
 docker compose down
 ```
 
+### Installer Composer dans un container de Docker
 
+Composer est un gestionnaire de dépendances pour PHP qui permet aux développeurs d'installer et de gérer les bibliothèques dont leur projet a besoin.
+
+Je l'installe ici dans "serverApache851" comme container.  
+
+Dans un shell il faut aller dans le container de docker.
+
+```bash
+docker exec -it serverApache851 bash
+# Pour sortir du nested shell (shell imbriqué) il faut utiliser la commande "exit"
+```
+
+Ensuite j'installe les dépendances (je mets une surcouche "nala" sur apt, pour avoir un retour plus clair et lisible) :
+
+```bash
+apt install -y nala
+nala update
+nala install -y zip unzip 7zip libzip-dev && docker-php-ext-install zip
+```
+
+Puis depuis [La Page officielle](https://getcomposer.org/download/) attention la longue string change à chaque version:
+
+```bash
+cd
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
 
 ## Auteurs
 
