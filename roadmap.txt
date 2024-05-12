@@ -1,11 +1,9 @@
-Je résume où j'en suis et ce quel est le projet en cours.
-
-Projet : une todolist avec en plus une partie insciption connexion.
+Projet : une todolist avec en plus une partie inscription connexion.
 
 Bases faites :
-- Initalisation git en local, plus le local est lié au remote sur le repot distant
+- Initialisation git en local, plus le local est lié au remote sur le repot distant
 - Pile de container docker créé + ajout de composer dans mon container apache.
-- Structure de fichier terminée
+- Structure de fichiers terminée
 
 
 Prochaines étapes :
