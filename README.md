@@ -128,7 +128,7 @@ docker exec -it serverApache851 bash
 # Pour sortir du nested shell (shell imbriqué) il faut utiliser la commande "exit"
 ```
 
-Ensuite j'installe les dépendances (je mets une surcouche "nala" sur apt, pour avoir un retour plus clair et lisible) :
+Ensuite j'installe les dépendances (je me sers de "nala", une surcouche d'apt, pour avoir un retour plus clair et lisible) :
 
 ```bash
 apt install -y nala
@@ -219,8 +219,6 @@ SELECT * FROM tasks;
 DELETE FROM tasks WHERE user_id = 2;
 DELETE FROM users WHERE id = 2;
 ```
-
-
 
 ## Auteurs
 
