@@ -10,7 +10,7 @@ services:
     ports:
       - "8851:80"
     volumes:
-      - . : /var/www/html
+      - .:/var/www/html
     environment:
       - ALLOW_OVERRIDE=true
       - DB_HOST=mysql

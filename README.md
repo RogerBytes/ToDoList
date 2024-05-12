@@ -89,6 +89,14 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - **Variables d'Environnement** : Configure phpMyAdmin pour se connecter au service `mysql`.
 - **Ports** : Le port 80 du conteneur (port par défaut de phpMyAdmin) est mappé sur le port 7851 de l'hôte.
 
+#### Mise en route
+
+J'utilise compose up pour le lancer, l'option `-d` le lance en arrière plan en "detached", le processus ne s'arrête pas si je ferme le terminal.
+
+```sh
+docker compose up -d
+```
+
 ## Auteurs
 
 - [Harry RICHMOND](https://github.com/RogerBytes)
