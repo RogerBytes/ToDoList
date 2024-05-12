@@ -163,6 +163,64 @@ mariadb -u root -p
 
 et tape le mot de passe ("root" en l’occurrence).
 
+Je crée une base de données "todolist"
+
+```sql
+CREATE DATABASE todolist;
+```
+
+et la sélectionne
+
+```sql
+USE todolist;
+```
+
+Je crée la table users
+
+```sql
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('standard', 'admin') NOT NULL DEFAULT 'standard'
+);
+```
+
+et la table tasks
+
+```sql
+CREATE TABLE tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    is_complete BOOLEAN NOT NULL DEFAULT FALSE,
+    due_date DATE NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
+
+Je m'insère en tant qu'admin
+
+```sql
+INSERT INTO users (name, email, password, role) VALUES ('RogerBytes', 'rogerbytes@vivaldi.net', 'root', 'admin');
+```
+
+Pour les tester j'ai fait :
+
+```sql
+INSERT INTO users (name, email, password, role) VALUES ('Alice', 'alice@example.com', 'password123', 'standard');
+INSERT INTO tasks (user_id, title, description, is_complete, due_date) VALUES (2, 'Acheter des chaussettes', 'Mes chaussettes sont toutes trouées', FALSE, '2024-03-10');
+-- et je les affiche
+SELECT * FROM users;
+SELECT * FROM tasks;
+-- et je les supprime
+DELETE FROM tasks WHERE user_id = 2;
+DELETE FROM users WHERE id = 2;
+```
+
+
 ## Auteurs
 
 - [Harry RICHMOND](https://github.com/RogerBytes)
