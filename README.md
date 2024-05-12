@@ -91,11 +91,25 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 
 #### Mise en route
 
-J'utilise compose up pour le lancer, l'option `-d` le lance en arrière plan en "detached", le processus ne s'arrête pas si je ferme le terminal.
+J'utilise compose up pour le lancer la première fois, l'option `-d` le lance en arrière plan en "detached", le processus ne s'arrête pas si je ferme le terminal. Il va tout configurer en fonction de ces deux fichiers.
 
 ```sh
 docker compose up -d
 ```
+
+Ensuite pour l'arrêter j'utilise
+
+```sh
+docker compose stop
+```
+
+et pour le lancer
+
+```sh
+docker compose start
+```
+
+
 
 ## Auteurs
 
