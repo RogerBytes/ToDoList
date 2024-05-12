@@ -109,7 +109,11 @@ et pour le lancer
 docker compose start
 ```
 
+Si je veux complètement supprimer les conteneurs et la pile.
 
+```sh
+docker compose down
+```
 
 ## Auteurs
 
