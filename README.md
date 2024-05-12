@@ -23,9 +23,9 @@ Puis mon premier push (en lui disant de passer sur le repo distant) :
 
 ### Container docker
 
-Afin de pouvoir facilement deployer le projet j'utilise Docker.  
+Afin de pouvoir facilement deployer le projet j'utilise Docker.
 
-Le `Dockerfile` est utilisé pour créer une ou plusieurs images Docker personnalisées. Ces images définissent l'environnement de l'application, y compris le système d'exploitation de base, les logiciels installés, les fichiers de votre application, les variables d'environnement, et plus encore.  
+Le `Dockerfile` est utilisé pour créer une ou plusieurs images Docker personnalisées. Ces images définissent l'environnement de l'application, y compris le système d'exploitation de base, les logiciels installés, les fichiers de votre application, les variables d'environnement, et plus encore.
 
 Le fichier `docker-compose.yml` est utilisé pour définir et exécuter une pile de conteneurs Docker (multi-conteneurs). Ces conteneurs sont des instances en cours d'exécution créées à partir des images Docker. Docker Compose vous permet de configurer plusieurs conteneurs à la fois, de les relier ensemble, de configurer des volumes, des réseaux, etc.
 
@@ -119,7 +119,7 @@ docker compose down
 
 Composer est un gestionnaire de dépendances pour PHP qui permet aux développeurs d'installer et de gérer les bibliothèques dont leur projet a besoin.
 
-Je l'installe ici dans "serverApache851" comme container.  
+Je l'installe ici dans "serverApache851" comme container.
 
 Dans un shell il faut aller dans le container de docker.
 
@@ -127,6 +127,20 @@ Dans un shell il faut aller dans le container de docker.
 docker exec -it serverApache851 bash
 # Pour sortir du nested shell (shell imbriqué) il faut utiliser la commande "exit"
 ```
+
+Il y a une particularité au projet, l'index.php n'est pas à la racine du dossier mais dans le dossier "public". Il faut changer la directive `DocumentRoot` d'apache. Je dois modifier `/etc/apache2/sites-available/000-default.conf`
+
+```sh
+nano /etc/apache2/sites-available/000-default.conf
+```
+
+Il faut ajouter `/public` au chemin, ça donne :
+
+```sh
+DocumentRoot /var/www/html/public
+```
+
+Ensuite, quitter et sauver avec `CTRL+X`puis `Y`. Après avoir arrêté et relancé le compose, la modification est prise en compte.
 
 Ensuite j'installe les dépendances (je me sers de "nala", une surcouche d'apt, pour avoir un retour plus clair et lisible) :
 
@@ -144,6 +158,7 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
 ```
 
 ### Afficher le le projet dans le navigateur
