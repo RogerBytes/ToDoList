@@ -63,6 +63,7 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 #### docker-compose
 
 ##### Serveur Web (`web`)
+
 - **Contexte de Construction de l'Image** : Le répertoire courant (`.`), où se trouve le `Dockerfile` pour construire l'image personnalisée du serveur Apache avec PHP.
 - **Dépendances** : Ce service dépend du service `mysql`, ce qui signifie que le service `mysql` sera démarré en premier.
 - **Nom du Conteneur** : `serverApache851` est le nom donné au conteneur du serveur web.
@@ -72,6 +73,7 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - **Variables d'Environnement** : Configuration de l'environnement Apache et des paramètres de connexion à la base de données MySQL.
 
 ##### Base de Données MySQL (`mysql`)
+
 - **Image** : Utilise l'image `mariadb`, une variante populaire de MySQL.
 - **Nom du Conteneur** : `serverMySQL851` est le nom attribué au conteneur de la base de données.
 - **Redémarrage** : Le conteneur redémarrera automatiquement sauf si arrêté manuellement.
@@ -79,6 +81,7 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - **Ports** : Le port 3306 du conteneur (port par défaut de MySQL) est mappé sur le port 3851 de l'hôte.
 
 ##### phpMyAdmin (`phpmyadmin`)
+
 - **Image** : Utilise l'image `phpmyadmin` pour fournir une interface web de gestion de la base de données MySQL.
 - **Nom du Conteneur** : `serverPHPMyAdmin851` est le nom donné au conteneur phpMyAdmin.
 - **Redémarrage** : Le conteneur redémarrera automatiquement sauf si arrêté manuellement.
