@@ -8,13 +8,21 @@ services:
     ports:
       - "8851:80"
     volumes:
-      - ./todolist-app/public:/var/www/html
+      - ./todolist-app:/var/www
     environment:
-      - ALLOW_OVERRIDE=true
+      - APACHE_DOCUMENT_ROOT=/var/www/public
       - DB_HOST=mysql
+      - DB_NAME=blog
       - DB_USER=root
       - DB_PASSWORD=root
-      - DB_NAME=blog
+    command: >
+      /bin/sh -c "
+      sed -i 's|/var/www/html|/var/www/public|g' /etc/apache2/sites-available/*.conf
+      sed -i 's|/var/www/html|/var/www/public|g' /etc/apache2/apache2.conf
+      sed -i 's|/var/www/html|/var/www/public|g' /etc/apache2/conf-available/*.conf
+      apache2-foreground
+      "
+
   mysql:
     image: mariadb
     container_name: serverMySQL851
@@ -23,14 +31,15 @@ services:
       - MARIADB_ROOT_PASSWORD=root
     ports:
       - "3851:3306"
+
   phpmyadmin:
-    image: phpmyadmin
+    image: phpmyadmin/phpmyadmin
     container_name: serverPHPMyAdmin851
     restart: unless-stopped
     depends_on:
       - mysql
     environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: mysql
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
     ports:
       - "7851:80"

@@ -1,5 +1,5 @@
 <?php
-require '../config/db_connect.php'; // Remonter d'un niveau puis entrer dans le dossier /config
+require '../config/db_connect.php';
 
 
 echo "Hello, World! This is the index.php file in the public directory.";
