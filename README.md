@@ -60,13 +60,31 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - `EXPOSE 80`  
   Indique que le conteneur écoute sur le port 80, le port HTTP par défaut, ce qui permettra aux clients de se connecter au service web Apache.
 
-##### Utilisation de l'image
+#### docker-compose
 
-Pour construire une image à partir de ce `Dockerfile`, il faut utiliser la commande suivante dans le répertoire contenant le `Dockerfile` :
+##### Serveur Web (`web`)
+- **Contexte de Construction de l'Image** : Le répertoire courant (`.`), où se trouve le `Dockerfile` pour construire l'image personnalisée du serveur Apache avec PHP.
+- **Dépendances** : Ce service dépend du service `mysql`, ce qui signifie que le service `mysql` sera démarré en premier.
+- **Nom du Conteneur** : `serverApache851` est le nom donné au conteneur du serveur web.
+- **Redémarrage** : Le conteneur sera redémarré automatiquement à moins qu'il ne soit arrêté manuellement (`unless-stopped`).
+- **Ports** : Le port 80 du conteneur (port par défaut d'Apache) est mappé sur le port 8851 de l'hôte.
+- **Volumes** : Le répertoire courant est monté dans le conteneur au chemin `/var/www/html`, permettant la synchronisation des fichiers entre l'hôte et le conteneur.
+- **Variables d'Environnement** : Configuration de l'environnement Apache et des paramètres de connexion à la base de données MySQL.
 
-```sh
-docker build -t nom_de_votre_image
-```
+##### Base de Données MySQL (`mysql`)
+- **Image** : Utilise l'image `mariadb`, une variante populaire de MySQL.
+- **Nom du Conteneur** : `serverMySQL851` est le nom attribué au conteneur de la base de données.
+- **Redémarrage** : Le conteneur redémarrera automatiquement sauf si arrêté manuellement.
+- **Variables d'Environnement** : Définit le mot de passe root de MariaDB pour l'accès à la base de données.
+- **Ports** : Le port 3306 du conteneur (port par défaut de MySQL) est mappé sur le port 3851 de l'hôte.
+
+##### phpMyAdmin (`phpmyadmin`)
+- **Image** : Utilise l'image `phpmyadmin` pour fournir une interface web de gestion de la base de données MySQL.
+- **Nom du Conteneur** : `serverPHPMyAdmin851` est le nom donné au conteneur phpMyAdmin.
+- **Redémarrage** : Le conteneur redémarrera automatiquement sauf si arrêté manuellement.
+- **Dépendances** : Ce service dépend du service `mysql`, garantissant que phpMyAdmin peut se connecter à la base de données.
+- **Variables d'Environnement** : Configure phpMyAdmin pour se connecter au service `mysql`.
+- **Ports** : Le port 80 du conteneur (port par défaut de phpMyAdmin) est mappé sur le port 7851 de l'hôte.
 
 ---
 
