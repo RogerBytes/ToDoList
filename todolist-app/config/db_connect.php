@@ -1,10 +1,10 @@
 <?php
-// db_connect.php
 
-$host = 'mysql'; // L'adresse du serveur de base de données
-$dbname = 'todolist'; // Le nom de votre base de données
-$user = 'root'; // Votre nom d'utilisateur pour la base de données
-$pass = 'root'; // Le mot de passe associé à l'utilisateur de la base de données
+
+$host = 'mysql';
+$dbname = 'todolist';
+$user = 'root';
+$pass = 'root';
 
 // Options de connexion à la base de données
 $options = [
