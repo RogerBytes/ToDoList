@@ -4,6 +4,8 @@ Une application de gestion de tâches (todolist) qui permet aux utilisateurs de 
 
 ## Mise en place du projet
 
+### Repo local et distant
+
 Pour créer mon repo git local :
 `git init`
 
@@ -18,6 +20,10 @@ Je fais mon premier commit (en ayant un fichier "README.md") :
 
 Puis mon premier push (en lui disant de passer sur le repo distant) :
 `git push --set-upstream origin master`
+
+### Container docker
+
+Afin de pouvoir facilement deployer le projet je créé un `compose.yaml` qui sera utilisé par docker via `docker compose`.
 
 ---
 
