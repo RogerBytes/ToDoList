@@ -23,6 +23,7 @@ services:
       - MARIADB_ROOT_PASSWORD=root
     ports:
       - "3851:3306"
+
   phpmyadmin:
     image: phpmyadmin
     container_name: serverPHPMyAdmin851
