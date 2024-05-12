@@ -69,7 +69,7 @@ Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officie
 - **Nom du Conteneur** : `serverApache851` est le nom donné au conteneur du serveur web.
 - **Redémarrage** : Le conteneur sera redémarré automatiquement à moins qu'il ne soit arrêté manuellement (`unless-stopped`).
 - **Ports** : Le port 80 du conteneur (port par défaut d'Apache) est mappé sur le port 8851 de l'hôte.
-- **Volumes** : Le répertoire courant est monté dans le conteneur au chemin `/var/www/html`, permettant la synchronisation des fichiers entre l'hôte et le conteneur.
+- **Volumes** : Le répertoire `/todolist-app/public` est monté dans le conteneur au chemin `/var/www/html`, permettant la synchronisation des fichiers entre l'hôte et le conteneur.
 - **Variables d'Environnement** : Configuration de l'environnement Apache et des paramètres de connexion à la base de données MySQL.
 
 ##### Base de Données MySQL (`mysql`)
@@ -145,6 +145,10 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b3
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
+
+### Afficher le le projet dans le navigateur
+
+Il suffit de se rendre à l'adresse `http://localhost:8851/`.
 
 ## Configuration de la base de données
 
