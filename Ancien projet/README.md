@@ -7,19 +7,36 @@ Une application de gestion de tâches (todolist) qui permet aux utilisateurs de 
 ### Repo local et distant
 
 Pour créer mon repo git local :
-`git init`
+
+```bash
+git init
+```
 
 Créer mon repo distant :
-`gh repo create RogerBytes/ToDoList --public`
+
+```bash
+gh repo create RogerBytes/ToDoList --public
+```
 
 Je lie le remote (en gros ça synchronise le repo local sur le distant) :
-`git remote add origin git@github.com:RogerBytes/ToDoList.git`
+
+```bash
+git remote add origin git@github.com:RogerBytes/ToDoList.git
+
+```
 
 Je fais mon premier commit (en ayant un fichier "README.md") :
-`git add --all && git commit -m "First commit"`
+
+```bash
+git add --all && git commit -m "First commit"
+
+```
 
 Puis mon premier push (en lui disant de passer sur le repo distant) :
-`git push --set-upstream origin master`
+
+```bash
+git push --set-upstream origin master
+```
 
 ### Container docker
 
@@ -32,6 +49,18 @@ Le fichier `docker-compose.yml` est utilisé pour définir et exécuter une pile
 #### Dockerfile
 
 Ce `Dockerfile` crée une image Docker personnalisée basée sur l'image officielle `php:8.2-apache`. L'image résultante est configurée pour exécuter une application PHP avec le serveur web Apache et supporte l'utilisation des bibliothèques graphiques et la connexion à une base de données MySQL. Voici le détail des instructions :
+
+```bash
+FROM php:8.2-apache`
+RUN apt update && apt upgrade -y
+RUN apt install -y libfreetype6-dev
+&& docker-php-ext-configure gd --with-freetype=/usr/include/freetype2/
+&& docker-php-ext-install pdo_mysql gd
+RUN apt install -y libcurl4-openssl-dev pkg-config libssl-dev
+RUN a2enmod rewrite
+# COPY . /var/www/html
+EXPOSE 80
+```
 
 - `FROM php:8.2-apache`  
   Définit l'image de base comme `php:8.2-apache`, qui inclut PHP 8.2 et le serveur web Apache prêt à l'emploi.
