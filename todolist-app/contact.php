@@ -12,6 +12,7 @@ require "header.php";
   </div>
   <div class="col-md-4">
     <h2>Horaires d'ouverture</h2>
+    <?= date('l') ?>
     <ul>
     <?php foreach (JOURS as $key => $jour): ?>
       <li>
