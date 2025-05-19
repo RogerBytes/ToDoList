@@ -1,12 +1,26 @@
 <?php
 $title = "Nous contacter";
-require "header.php"
+require_once "config.php";
+require_once "functions.php";
+require "header.php";
 ?>
 
-<div class="starter-template">
-  <h1>Nous contacter</h1>
-  <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, quam in! Maiores ducimus error
-    dolores eveniet tenetur facilis fugiat nulla commodi eligendi eaque ex at, maxime rem! Vero, molestiae qui.</p>
+<div class="row">
+  <div class="col-md-8">
+    <h2>Nous contacter</h2>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum, quam in! Maiores</p>
+  </div>
+  <div class="col-md-4">
+    <h2>Horaires d'ouverture</h2>
+    <ul>
+    <?php foreach (JOURS as $key => $jour): ?>
+      <li>
+        <strong><?= $jour ?></strong> :
+        <?= creneaux_html(CRENEAUX[$key]) ?>
+      </li>
+    <?php endforeach; ?>
+    </ul>
+  </div>
 </div>
 
 <?php require "footer.php"; ?>

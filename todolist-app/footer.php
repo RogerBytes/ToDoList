@@ -1,16 +1,18 @@
 </main>
 
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <ul class="list-unstyled text-small">
-      <h5>Navigation</h5>
-      <?= nav_menu(); ?>
-    </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <ul class="list-unstyled text-small">
+        <h5>Navigation</h5>
+        <?= nav_menu(); ?>
+      </ul>
+    </div>
   </div>
-
 </div>
+
 
 
 

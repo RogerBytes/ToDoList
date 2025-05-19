@@ -49,3 +49,14 @@ function dump($var) {
   var_dump($var);
   echo "</pre>";
 }
+
+function creneaux_html(array $creneaux): string {
+  if (empty($creneaux)) {
+    return "Fermé";
+  }
+  $phrases = [];
+  foreach ( $creneaux as $creneau ) {
+    $phrases[] = "de <strong>{$creneau[0]}h à {$creneau[1]}h</strong>";
+  }
+  return "Ouvert " . implode(" et ", $phrases);
+}
