@@ -1,4 +1,4 @@
-## 🗓️ Planning vidéos Grafikart par jour
+# 🗓️ Planning vidéos Grafikart par jour
 
 ### 🟩 Lundi – Environnement + BDD + Auth
 
