@@ -1,5 +1,8 @@
 <?php
 
+use Composer\Command\FundCommand;
+
+
 function nav_item(string $script_name, string $title, string $link_class = ''): string {
   $class = 'nav-item';
   if ($_SERVER['SCRIPT_NAME'] === $script_name) {

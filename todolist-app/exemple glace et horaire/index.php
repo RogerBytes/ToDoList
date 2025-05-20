@@ -1,6 +1,6 @@
 <?php
 $title = "Page d'accueil";
-require "elements/header.php"
+require "header.php"
   ?>
 
 <div class="starter-template">
@@ -8,4 +8,4 @@ require "elements/header.php"
   <p class="lead">J'en suis au chapitre 14 "Les dates"</p>
 </div>
 
-<?php require "elements/footer.php"; ?>
+<?php require "footer.php"; ?>

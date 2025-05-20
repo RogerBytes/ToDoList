@@ -8,7 +8,7 @@
 
 ## En cas de ralentissement avec Docker
 
-Je ne sais pas pourquoi mais il arrive que Docker ralentisse lourdement l'environnement graphique, du moins sur Linux, voici comment le relancer
+Je ne sais pas pourquoi mais il arrive que Docker ralentisse lourdement l'environnement graphique, du moins sur Cinnamon, voici comment le relancer
 
 ```bash
 nohup cinnamon --replace >/dev/null 2>&1 &
@@ -148,3 +148,7 @@ C'est `- MARIADB_ROOT_PASSWORD=root` donne le mot de passe `root` à l’utilisa
 - Serveur = `mysql`
 - Utilisateur = `root`
 - Mot de passe = `root`
+
+## Interface d'abstraction PDO
+
+Sur la [page d'extensions BDD de php](https://www.php.net/manual/fr/refs.database.php), j'utilise [PDO (PHP Data Object)](https://www.php.net/manual/fr/book.pdo.php)

@@ -46,7 +46,7 @@ foreach (['parfum', 'supplement', 'cornet'] as $name) {
 
 
 
-require "elements/header.php";
+require "header.php";
 ?>
 
 
@@ -120,4 +120,4 @@ require "elements/header.php";
 <pre><?php var_dump($_POST); /* print_r($_POST); */ /* echo var_export($_POST, true); */ ?></pre>
 
 
-<?php require "elements/footer.php"; ?>
+<?php require "footer.php"; ?>
