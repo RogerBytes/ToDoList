@@ -1,6 +1,6 @@
 # 🗓️ Planning vidéos Grafikart par jour
 
-### 🟩 Lundi – Environnement + BDD + Auth
+## 🟩 Lundi – Environnement + BDD + Auth
 
 - [Chapitre 2] Installer PHP sur MacOS  
 - [Chapitre 3] Installer PHP sur Windows  
@@ -13,7 +13,7 @@
 
 ---
 
-### 🟩 Mardi – Lecture & Ajout
+## 🟩 Mardi – Lecture & Ajout
 
 - [Chapitre 15] Lecture de fichiers  
 - [Chapitre 16] Écriture de fichiers  
@@ -23,7 +23,7 @@
 
 ---
 
-### 🟨 Mercredi – Modification / Suppression
+## 🟨 Mercredi – Modification / Suppression
 
 - [Chapitre 7] Les conditions  
 - [Chapitre 8] Les boucles  
@@ -33,7 +33,7 @@
 
 ---
 
-### 🟨 Jeudi – Style & Nettoyage
+## 🟨 Jeudi – Style & Nettoyage
 
 - [Chapitre 12] PHP & HTML  
 - [Chapitre 37] ob_start  
@@ -41,7 +41,7 @@
 
 ---
 
-### 🟥 Vendredi – Sécurité & Finalisation
+## 🟥 Vendredi – Sécurité & Finalisation
 
 - [Chapitre 29] Les Exceptions  
 - [Chapitre 35] Les fonctions anonymes  
