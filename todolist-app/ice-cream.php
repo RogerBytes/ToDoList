@@ -1,5 +1,6 @@
 <?php
-require_once "functions.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
+// require_once "functions.php";
 //checkbox
 $parfums = [
   "Fraise" => 4,
@@ -46,7 +47,7 @@ foreach (['parfum', 'supplement', 'cornet'] as $name) {
 
 
 
-require "elements/header.php";
+require path("elements/header.php");
 ?>
 
 

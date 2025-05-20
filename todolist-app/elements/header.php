@@ -1,5 +1,8 @@
 <?php
-require_once 'functions.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
+require_once path("functions.php");
+require_once path("functions/auth.php");
+$connected = is_connected();
 ?><!doctype html>
 <html lang="en">
 
@@ -36,6 +39,17 @@ require_once 'functions.php';
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <?= nav_menu('nav-link'); ?>
+      </ul>
+      <ul class="navbar-nav">
+        <?php if ($connected): ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout.php">Déconnexion</a>
+          </li>
+        <?php else: ?>
+          <li class="nav-item">
+            <a class="nav-link" href="/login.php">Connexion</a>
+          </li>
+        <?php endif ?>
       </ul>
     </div>
   </nav>
