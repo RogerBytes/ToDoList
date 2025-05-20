@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = "Nous contacter";
 require_once "config.php";
 require_once "functions.php";
