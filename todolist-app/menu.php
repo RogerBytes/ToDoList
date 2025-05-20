@@ -1,4 +1,4 @@
 <?php
 $menu = file_get_contents('menu.html');
-echo $menu;
+echo $menu . "prout";
 ?>
