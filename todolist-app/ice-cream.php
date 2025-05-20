@@ -75,7 +75,7 @@ require "elements/header.php";
 
   </div>
   <div class="col-md-8">
-    <form action="/jeu.php" method="get">
+    <form action="/ice-cream.php" method="get">
       <h2>Choisissez vos parfums</h2>
       <?php foreach ($parfums as $parfum => $prix): ?>
         <div class="checkbox">
@@ -107,17 +107,6 @@ require "elements/header.php";
     </form>
   </div>
 </div>
-
-
-
-<h3>Prix</h3>
-<h2> GET</h2>
-<!-- [DEBUG] -->
-<pre><?php var_dump($_GET); /* print_r($_GET); */ /* echo var_export($_GET, true); */ ?></pre>
-
-<h2>POST</h2>
-<!-- [DEBUG] -->
-<pre><?php var_dump($_POST); /* print_r($_POST); */ /* echo var_export($_POST, true); */ ?></pre>
 
 
 <?php require "elements/footer.php"; ?>

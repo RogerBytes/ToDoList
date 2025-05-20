@@ -15,7 +15,7 @@ EOC;
 function nav_menu(string $class = ''): string {
   return
     nav_item("/index.php", "Accueil", $class) .
-    nav_item("/jeu.php", "Jeu", $class) .
+    nav_item("/ice-cream.php", "Nos Glaces", $class) .
     nav_item("/contact.php", "Contact", $class);
 }
 
