@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['role'] = 'administrateur';
+unset($_SESSION["role"]);
 $title = "Page d'accueil";
 require "elements/header.php"
   ?>
