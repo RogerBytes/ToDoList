@@ -1,6 +1,6 @@
 <?php
 
-// Attention, il faut passer la fonnction is_connected() dans une variable AVANT qu'il y ait du HTML; comme cela on peut appeler la variable en plein milieu de la page
+// Attention, il faut passer la fonction is_connected() dans une variable AVANT qu'il y ait du HTML; comme cela on peut appeler la variable en plein milieu de la page
 
 function is_connected(): bool {
   if (session_status() !== PHP_SESSION_ACTIVE) {

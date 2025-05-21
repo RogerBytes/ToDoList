@@ -1,8 +1,8 @@
 <?php
 require_once dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
-require_once path("includes/functions.php");
 require_once path("lib/auth.php");
 $connected = is_connected();
+require_once path("includes/functions.php");
 ?><!doctype html>
 <html lang="en">
 
