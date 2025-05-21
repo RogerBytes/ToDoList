@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
 $erreur= null;
+$password = '$2y$14$QcdbyR05QtNWbsWqjpqQZeB2oXJ2ITMv4ltYNmUPHLm1Oqp5qLJFK';
 if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-  if ($_POST['pseudo'] === 'John' && $_POST['password'] === 'admin') {
+  if ($_POST['pseudo'] === 'John' && password_verify($_POST['password'], $password)) {
     session_start();
     $_SESSION['user_id'] = 1;
     header("Location: /dashboard.php");
