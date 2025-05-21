@@ -149,6 +149,10 @@ C'est `- MARIADB_ROOT_PASSWORD=root` donne le mot de passe `root` à l’utilisa
 - Utilisateur = `root`
 - Mot de passe = `root`
 
+## Sécurisation et connexion
+
+Bla
+
 ## Interface d'abstraction PDO
 
 Sur la [page d'extensions BDD de php](https://www.php.net/manual/fr/refs.database.php), j'utilise [PDO (PHP Data Object)](https://www.php.net/manual/fr/book.pdo.php)
