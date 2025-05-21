@@ -151,8 +151,37 @@ C'est `- MARIADB_ROOT_PASSWORD=root` donne le mot de passe `root` à l’utilisa
 
 ## Sécurisation et connexion
 
-Bla
+J'ai vu l'utilisation de la fonction php `password_hash()` utilisée tel que :
+
+```php
+$hashed_password = password_hash($password, PASSWORD_DEFAULT, 'cost' => 14);
+```
+
+L'argument `'cost' => 14` est optionnel, il permet de définir le coût de hachage, c’est-à-dire la complexité de l’algorithme, rendant plus hardu le bruteforce du mdp pour un attaquant (rendant également plus longue la requête en demandant un calcul plus conséquent).
+
+`PASSWORD_DEFAULT` utilise bcrypt, l’algorithme de hachage par défaut.
 
 ## Interface d'abstraction PDO
 
 Sur la [page d'extensions BDD de php](https://www.php.net/manual/fr/refs.database.php), j'utilise [PDO (PHP Data Object)](https://www.php.net/manual/fr/book.pdo.php)
+
+### Base de donnée du projet
+
+Via `PhpMyAdmin` je créé une base de donnée `todolist` en `utf8mb4_general_ci`
+
+ou en CLI :
+
+```sql
+CREATE DATABASE `todolist` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */
+```
+
+Pour utiliser l'interface PDO de PHP :
+
+```php
+$pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password);
+```
+
+`'mysql:host=mysql;dbname=todolist;charset=utf8mb4'`
+
+Ceci est DSN (Data Source Name) est une chaîne de connexion qui indique à PDO comment se connecter à une base de données (type, hôte, nom, encodage, etc.).
+Dans `mysql:host=mysql`, le premier `mysql` correspond à la nature profonde de l'image de mariadb (c'est un fork de mysql), alors que le second `mysql` correspond au nom de service dans le `compose.yml`.
