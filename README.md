@@ -38,7 +38,7 @@ On lance docker-desktop et le conteneur docker avec :
 
 ```sh
 /opt/docker-desktop/bin/docker-desktop
-sleep 2
+sleep 7
 docker compose start
 ```
 
