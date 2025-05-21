@@ -183,5 +183,5 @@ $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $passw
 
 `'mysql:host=mysql;dbname=todolist;charset=utf8mb4'`
 
-Ceci est DSN (Data Source Name) est une chaîne de connexion qui indique à PDO comment se connecter à une base de données (type, hôte, nom, encodage, etc.).
-Dans `mysql:host=mysql`, le premier `mysql` correspond à la nature profonde de l'image de mariadb (c'est un fork de mysql), alors que le second `mysql` correspond au nom de service dans le `compose.yml`.
+Ceci est DSN (Data Source Name), une chaîne de connexion qui indique à PDO comment se connecter à une base de données (type, hôte, nom, encodage, etc.).
+Dans `mysql:host=mysql`, le premier `mysql` désigne le type de SGBD (Système de Gestion de Base de Données) utilisé (ici MariaDB, compatible MySQL), alors que le second `mysql` correspond au nom de service dans le `compose.yml`.
