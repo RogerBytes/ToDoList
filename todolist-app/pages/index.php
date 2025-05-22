@@ -7,20 +7,22 @@ $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $passw
   PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
 ]);
 $error = null;
-try
-{
+$success = null;
+try {
+  if (isset($_POST['name'], $_POST['content'])) {
+    $query = $pdo->prepare('INSERT INTO posts (name, content) VALUES (:name, :content)');
+    $query->execute([
+      'name' => $_POST['name'],
+      'content' => $_POST['content']
+    ]);
+    header('Location: /pages/edit.php?id=' . $pdo->lastInsertId());
+    exit();
+  }
   $query = $pdo->query('SELECT * FROM posts');
   $posts = $query->fetchAll();
-}
-catch (PDOException $e)
-{
+} catch (PDOException $e) {
   $error = $e->getMessage();
 }
-
-
-
-
-
 
 require path('includes/elements/header.php');
 ?>
@@ -33,9 +35,19 @@ require path('includes/elements/header.php');
 <?php else: ?>
   <ul>
   <?php foreach ($posts as $post): ?>
-  <li><?= $post->name?></li>
+  <li><a href="/pages/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a></li>
   <?php endforeach ?>
 </ul>
+  <h3>Ajouter une tâche</h3>
+  <form action="" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" value="">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" name="content" value=""></textarea>
+    </div>
+    <button class="btn btn-primary">Sauvegarder</button>
+  </form>
 <?php endif ?>
 
 

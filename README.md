@@ -157,7 +157,7 @@ J'ai vu l'utilisation de la fonction php `password_hash()` utilisée tel que :
 $hashed_password = password_hash($password, PASSWORD_DEFAULT, 'cost' => 14);
 ```
 
-L'argument `'cost' => 14` est optionnel, il permet de définir le coût de hachage, c’est-à-dire la complexité de l’algorithme, rendant plus hardu le bruteforce du mdp pour un attaquant (rendant également plus longue la requête en demandant un calcul plus conséquent).
+L'argument `'cost' => 14` est optionnel, il permet de définir le coût de hachage, c’est-à-dire la complexité de l’algorithme, rendant plus hardu le bruteforce du mdp pour un attaquant (en rendant plus longue la requête en demandant un calcul plus conséquent lors du décryptage).
 
 `PASSWORD_DEFAULT` utilise bcrypt, l’algorithme de hachage par défaut.
 
@@ -198,3 +198,41 @@ $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $passw
 `PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION` configure PDO pour lancer des exceptions en cas d’erreur SQL (au lieu de warnings silencieux).
 Cela permet une gestion plus propre et plus robuste des erreurs avec try/catch.  
 `PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ` définit le mode de récupération des résultats par défaut : chaque ligne sera un objet PHP (et non un tableau associatif). On accède alors aux colonnes via `$ligne->nom_colonne` au lieu de `$ligne['nom_colonne']`.
+
+### Sécurité dans SQL
+
+Dans ce `try/catch` :
+
+```php
+try {
+  if (isset($_POST['name'], $_POST['content'])) {
+    $query = $pdo->prepare('UPDATE posts SET name = :name, content = :content WHERE id = :id');
+    $query->execute([
+      'name' => $_POST['name'],
+      'content' => $_POST['content'],
+      'id' => (int)$_GET['id']
+    ]);
+  }
+  $query = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
+  $query->execute(['id' => (int)$_GET['id']]); // le get id est ce que retourne le get dans l'adresse http, avec le int je limite ce que peut mettre manuellement l'user dedans
+  $post = $query->fetch(); // ici je ne fetch qu'une seule ligne, vu que via la query sql, j'ai une condition sur la clé unique de id
+} catch (PDOException $e) {
+  $error = $e->getMessage();
+}
+```
+
+Quand je prépare des requêtes (`$query`) afin de prévenir les injection sql, je passe par des marqueurs avec la syntaxe `:` dans les paramètres de la méthode `prepare`.
+
+Ensuite via la méthode `execute` (qui lance la query), en paramètre, je passe via un tableau des valeurs au différents marqueurs.
+
+Le `try/catch` me permet ici de gérer les erreurs () en utilisant la méthode `getMessage` (héritée) de la classe `PDOException`.
+
+### Sécurité dans le HTML
+
+J'utilise la function php `htmlentities()`, elle convertit les caractères spéciaux HTML (comme <, >, &, ") en entités (&lt;, &gt;, etc.), empêchant ainsi les injections de code malveillant dans la page.
+Ceci empêche les attaques XSS (Cross-Site Scripting) en s'assurant que le contenu est affiché comme du texte, empêchant toute injection de  HTML ou de JavaScript.
+
+### Sécurité de connexion avec un .env
+
+Dans le `compose.yml`
+$user = $_ENV["DB_USER"];

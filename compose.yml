@@ -12,15 +12,15 @@ services:
     environment:
       - ALLOW_OVERRIDE=true
       - DB_HOST=mysql
-      - DB_USER=root
-      - DB_PASSWORD=root
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=blog
   mysql:
     image: mariadb
     container_name: serverMySQL851
     restart: unless-stopped
     environment:
-      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
       - "3851:3306"
 
