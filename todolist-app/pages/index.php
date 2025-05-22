@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
+require_once path('class/Post.php');
 $user = 'root';
 $password = 'root';
 $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password, [
@@ -19,7 +20,11 @@ try {
     exit();
   }
   $query = $pdo->query('SELECT * FROM posts');
-  $posts = $query->fetchAll();
+
+  /**
+   * @var Post[]
+   */
+  $posts = $query->fetchAll(PDO::FETCH_CLASS, 'Post');
 } catch (PDOException $e) {
   $error = $e->getMessage();
 }
@@ -35,8 +40,9 @@ require path('includes/elements/header.php');
 <?php else: ?>
   <?php foreach ($posts as $post): ?>
   <h2><a href="/pages/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a></h2>
+  <p class="small text-muted">Écrit le <?= $post->getCreatedAt()->format('d/m/Y à H:i') ?></p>
   <p>
-    <?= nl2br(htmlentities($post->content)) ?>
+    <?= nl2br(htmlentities($post->getExcerpt())) ?>
   </p>
   <?php endforeach ?>
 
