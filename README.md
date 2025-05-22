@@ -235,4 +235,26 @@ Ceci empêche les attaques XSS (Cross-Site Scripting) en s'assurant que le conte
 ### Sécurité de connexion avec un .env
 
 Dans le `compose.yml`
-$user = $_ENV["DB_USER"];
+Dans les variable d'environnement du service `web` j'ai ces variables :
+
+```yml
+- DB_USER=${DB_USER}
+- DB_PASSWORD=${DB_PASSWORD}
+```
+
+et dans les variable d'environnement du service `mysql` j'ai ces variables :
+
+```yml
+- MARIADB_ROOT_PASSWORD=${DB_PASSWORD}
+```
+
+Implicitement `${DB_USER}` et `${DB_PASSWORD}` seront interprétés comme les variables d’environnement correspondantes dans le fichier `.env` sous cette forme :
+
+```env
+DB_USER="root"
+DB_PASSWORD="root"
+```
+
+⚠️ **Évitez ABSOLUMENT** d'utiliser des identifiants sensibles en clair dans un vrai projet.
+
+On ajoute ce fichier dans le .gitignore (en ajoutant une ligne `.env` dans le `.gitignore`) pour éviter de l’exposer dans un dépôt Git. Lors du déploiement, le `.env` est ensuite injecté via Docker (placé au même niveau que le `docker-compose.yml`), par exemple avec un outil d’intégration continue.

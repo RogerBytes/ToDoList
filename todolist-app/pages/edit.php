@@ -2,7 +2,7 @@
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
 $user = 'root';
 $user = $_ENV["DB_USER"];
-$password = 'root';
+$password = $_ENV["DB_USER"];
 $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password, [
   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
   PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
@@ -26,11 +26,6 @@ try {
 } catch (PDOException $e) {
   $error = $e->getMessage();
 }
-
-
-
-
-
 
 require path('includes/elements/header.php');
 ?>
