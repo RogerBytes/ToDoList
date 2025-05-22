@@ -38,9 +38,9 @@ On lance docker-desktop et le conteneur docker avec :
 
 ```sh
 /opt/docker-desktop/bin/docker-desktop
-sleep 7
-docker compose start
 ```
+
+Par défaut `docker-desktop` va lancer tous nos conteneurs/piles de conteneurs (faisant ici l'équivalent d'un `docker compose start`)
 
 Et quand on souhaite stopper l'execution du conteneur :
 

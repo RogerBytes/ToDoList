@@ -33,11 +33,13 @@ require path('includes/elements/header.php');
 <?php if ($error): ?>
   <div class="alert alert-danger"><?= $error ?></div>
 <?php else: ?>
-  <ul>
   <?php foreach ($posts as $post): ?>
-  <li><a href="/pages/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a></li>
+  <h2><a href="/pages/edit.php?id=<?= $post->id ?>"><?= htmlentities($post->name) ?></a></h2>
+  <p>
+    <?= nl2br(htmlentities($post->content)) ?>
+  </p>
   <?php endforeach ?>
-</ul>
+
   <h3>Ajouter une tâche</h3>
   <form action="" method="post">
     <div class="form-group">

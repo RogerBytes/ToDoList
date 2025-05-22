@@ -11,7 +11,7 @@ function is_connected(): bool {
 
 function req_connect ():void {
   if (!is_connected()) {
-    header("Location: /login.php");
+    header("Location: /auth/login.php");
     exit;
   }
 }

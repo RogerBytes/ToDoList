@@ -43,11 +43,11 @@ require_once path("includes/functions.php");
       <ul class="navbar-nav">
         <?php if ($connected): ?>
           <li class="nav-item">
-            <a class="nav-link" href="/logout.php">Déconnexion</a>
+            <a class="nav-link" href="/auth/logout.php">Déconnexion</a>
           </li>
         <?php else: ?>
           <li class="nav-item">
-            <a class="nav-link" href="/login.php">Connexion</a>
+            <a class="nav-link" href="/auth/login.php">Connexion</a>
           </li>
         <?php endif ?>
       </ul>
