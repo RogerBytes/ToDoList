@@ -183,5 +183,18 @@ $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $passw
 
 `'mysql:host=mysql;dbname=todolist;charset=utf8mb4'`
 
-Ceci est DSN (Data Source Name), une chaîne de connexion qui indique à PDO comment se connecter à une base de données (type, hôte, nom, encodage, etc.).
+Ceci est le DSN (Data Source Name), une chaîne de connexion qui indique à PDO comment se connecter à une base de données (type, hôte, nom, encodage, etc.).  
 Dans `mysql:host=mysql`, le premier `mysql` désigne le type de SGBD (Système de Gestion de Base de Données) utilisé (ici MariaDB, compatible MySQL), alors que le second `mysql` correspond au nom de service dans le `compose.yml`.
+
+Quand on instancie PDO, en 4e argument, on peut configurer le comportement, par exemple :
+
+```php
+$pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password, [
+  PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+]);
+```
+
+`PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION` configure PDO pour lancer des exceptions en cas d’erreur SQL (au lieu de warnings silencieux).
+Cela permet une gestion plus propre et plus robuste des erreurs avec try/catch.  
+`PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ` définit le mode de récupération des résultats par défaut : chaque ligne sera un objet PHP (et non un tableau associatif). On accède alors aux colonnes via `$ligne->nom_colonne` au lieu de `$ligne['nom_colonne']`.
