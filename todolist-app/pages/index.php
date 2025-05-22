@@ -1,4 +1,6 @@
 <?php
+
+// Je suis à 37 minutes de la video chapitre 31
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
 require_once path('class/Post.php');
 $user = 'root';
