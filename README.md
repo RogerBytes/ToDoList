@@ -103,6 +103,31 @@ Et dans le footer
 ></script>
 ```
 
+## Représentation visuelle de l'architecture
+
+```asci
+todolist-app/
+├── auth/
+│   ├── login.php
+│   └── logout.php
+├── class/
+│   └── Post.php
+├── includes/
+│   ├── elements/
+│   │   ├── footer.php
+│   │   └── header.php
+│   └── functions.php
+├── lib/
+│   ├── auth.php
+│   └── path.php
+├── pages/
+│   ├── delete.php
+│   ├── edit.php
+│   ├── index.php
+│   └── todolist.php
+└── index.php  → redirection vers pages/index.php
+```
+
 ## PhpMyAdmin
 
 En se basant sur les infos du `compose.yml`

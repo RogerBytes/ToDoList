@@ -19,7 +19,7 @@ try {
       'content' => $_POST['content'],
       'id' => (int)$_GET['id']
     ]);
-    $success = 'Votre article a bien été modifié';
+    $success = 'Votre tâche a bien été modifié';
   }
   $query = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
   $query->execute(['id' => (int)$_GET['id']]); // le get id est ce que retourne le get dans l'adresse http, avec le int je limite ce que peut mettre manuellement l'user dedans
