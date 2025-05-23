@@ -3,6 +3,7 @@ require_once dirname(__DIR__,2) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARA
 require_once path("lib/auth.php");
 $connected = is_connected();
 require_once path("includes/functions.php");
+$title= "ToDoList.net";
 ?><!doctype html>
 <html lang="en">
 
@@ -17,7 +18,7 @@ require_once path("includes/functions.php");
     <?php if (isset($title)): ?>
       <?= $title ?>
     <?php else: ?>
-      <?= 'Mon Site' ?>
+      <?= 'Mon SiteAAA' ?>
     <?php endif ?>
   </title>
 
@@ -30,7 +31,7 @@ require_once path("includes/functions.php");
 <body>
 
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Mon Site</a>
+    <a class="navbar-brand" href="#"><?= $title ?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

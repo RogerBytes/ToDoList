@@ -1,6 +1,5 @@
 <?php
 
-// Je suis à 37 minutes de la video chapitre 31
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
 require_once path('class/Post.php');
 $user = 'root';
@@ -36,12 +35,36 @@ try {
 require path('includes/elements/header.php');
 ?>
 
-<h2>Ceci est un projet étudiant !</h2>
+<?php if ($error): ?>
+  <div class="alert alert-danger"><?= $error ?></div>
+<?php else: ?>
+  <?php foreach ($posts as $post): ?>
+    <div class="d-flex align-items-center justify-content-between">
+  <h2 class="mb-0"><?= htmlentities($post->name) ?></h2>
+  <div>
+    <a class="btn btn-secondary me-2" href="/pages/edit.php?id=<?= $post->id ?>">Éditer</a>
+    <a class="btn btn-danger" href="/pages/delete.php?id=<?= $post->id ?>">Supprimer</a>
+  </div>
+</div>
 
-<pre>
-Soyez indulgent.
-</pre>
 
+  <p class="small text-muted">Écrit le <?= $post->getCreatedAt()->format('d/m/Y à H:i') ?></p>
+  <p>
+    <?= nl2br(htmlentities($post->getExcerpt())) ?>
+  </p>
+  <?php endforeach ?>
+
+  <h3>Ajouter une tâche</h3>
+  <form action="" method="post">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" value="">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" name="content" value=""></textarea>
+    </div>
+    <button class="btn btn-primary">Sauvegarder</button>
+  </form>
+<?php endif ?>
 
 
 <?php

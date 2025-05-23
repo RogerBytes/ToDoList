@@ -12,14 +12,13 @@ $error = null;
 $success = null;
 
 try {
-  if (isset($_POST['name'], $_POST['content'])) {
-    $query = $pdo->prepare('UPDATE posts SET name = :name, content = :content WHERE id = :id');
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $query = $pdo->prepare('DELETE FROM posts WHERE id = :id');
     $query->execute([
-      'name' => $_POST['name'],
-      'content' => $_POST['content'],
+
       'id' => (int)$_GET['id']
     ]);
-    $success = 'Votre article a bien été modifié';
+    $success = 'Votre article a bien été supprimé';
   }
   $query = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
   $query->execute(['id' => (int)$_GET['id']]); // le get id est ce que retourne le get dans l'adresse http, avec le int je limite ce que peut mettre manuellement l'user dedans
@@ -31,7 +30,7 @@ try {
 require path('includes/elements/header.php');
 ?>
 
-<h2>Coucou c'est nous</h2>
+<h2>Suppression d'une tâche</h2>
 
 
 <?php if ($success): ?>
@@ -41,15 +40,11 @@ require path('includes/elements/header.php');
 <?php elseif ($error): ?>
   <div class="alert alert-danger"><?= $error ?></div>
 <?php else: ?>
+<h3><?= htmlentities($post->name) ?></h3>
+<p><?= htmlentities($post->content) ?></p>
 <form action="" method="post">
-  <div class="form-group">
-    <input type="text" class="form-control" name="name" value="<?= htmlentities($post->name) ?>">
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" name="content" value=""><?= htmlentities($post->content) ?></textarea>
-  </div>
-  <a href="/pages/todolist.php" class="btn btn-secondary">Annuler la modification</a>
-  <button class="btn btn-primary">Confirmer la modification</button>
+  <a href="/pages/todolist.php" class="btn btn-primary">Annuler la suppression</a>
+  <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
 </form>
 <?php endif ?>
 

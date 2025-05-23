@@ -15,9 +15,7 @@ EOC;
 function nav_menu(string $class = ''): string {
   return
     nav_item("/index.php", "Accueil", $class) .
-    nav_item("/ice-cream.php", "Nos Glaces", $class) .
-    nav_item("/dashboard.php", "test connexion", $class) .
-    nav_item("/contact.php", "Contact", $class);
+    nav_item("/pages/todolist.php", "Liste de tâches", $class);
 }
 
 function dump($var) {
