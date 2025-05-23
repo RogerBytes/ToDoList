@@ -1,6 +1,5 @@
 
-
-parler des captcha# TodoList
+# TodoList
 
 ## Prérequis
 
@@ -260,3 +259,9 @@ DB_PASSWORD="root"
 ⚠️ **Évitez ABSOLUMENT** d'utiliser des identifiants sensibles en clair dans un vrai projet.
 
 On ajoute ce fichier dans le .gitignore (en ajoutant une ligne `.env` dans le `.gitignore`) pour éviter de l’exposer dans un dépôt Git. Lors du déploiement, le `.env` est ensuite injecté via Docker (placé au même niveau que le `docker-compose.yml`), par exemple avec un outil d’intégration continue.
+
+### manquant d'après nolween pour le dossier
+
+parler des captcha
+expliquer le bruteforce, quelles precautions prendre (LIMITE D'EERREUR DE MDp, CAPTCHA)
+Expliquer csrf
