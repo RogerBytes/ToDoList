@@ -201,6 +201,17 @@ ou en CLI :
 CREATE DATABASE `todolist` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */
 ```
 
+et également la table `posts` 
+
+```sql
+CREATE TABLE posts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  content TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
 Pour utiliser l'interface PDO de PHP :
 
 ```php
