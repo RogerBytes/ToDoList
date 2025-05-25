@@ -22,7 +22,7 @@ Présentement je ne vais pas détailler les fichiers `compose.yml` (qui génère
 Déploiement :
 
 ```bash
-docker compose up -d
+docker compose up -d # Créé la pile de conteneurs
 sleep 2
 docker compose stop
 volume_path=$(grep -oP '(?<=- ./)[^:]*' compose.yml)
@@ -39,6 +39,13 @@ On lance docker-desktop et le conteneur docker avec :
 
 ```sh
 /opt/docker-desktop/bin/docker-desktop
+```
+
+Ou manuellement avec
+
+```bash
+docker compose start   # Lancer les conteneurs
+docker compose stop    # Stopper les conteneurs
 ```
 
 Par défaut `docker-desktop` va lancer tous nos conteneurs/piles de conteneurs (faisant ici l'équivalent d'un `docker compose start`)
