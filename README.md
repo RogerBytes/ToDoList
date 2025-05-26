@@ -336,11 +336,64 @@ Il me faut ajouter un input caché dans mes formulaires (si possible en premier)
 <input type="hidden" name="csrf_token" value="<?= $local_token ?>">
 ```
 
-#### Limite de tentatives de connexion
+#### Limite de tentatives de connexion et table users
+
+##### Créer une table users
+
+Dans PhpMyAdmin, je crée la table `users`
+
+- id (clé primaire auto-incrémentée)
+- username (unique)
+- password_hash
+- failed_attempts (int)
+- blocked_until (datetime, nullable)
+
+en CLI
+
+```sql
+CREATE TABLE `todolist`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(15) NOT NULL,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `failed_attempt` INT NOT NULL DEFAULT 0,
+  `blocked_until` DATETIME DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE (`username`)
+) ENGINE=InnoDB;
+```
+
+Et je modifie la table `posts` pour y lier une clef étrangère
+
+```sql
+-- 2. Ajouter la colonne user_id dans posts, nullable
+ALTER TABLE posts ADD COLUMN user_id INT NULL AFTER id;
+-- 3. Ajouter la colonne archived_at dans posts
+ALTER TABLE posts ADD COLUMN archived_at DATETIME DEFAULT NULL;
+-- 4. Ajouter la contrainte de clé étrangère avec ON DELETE SET NULL
+ALTER TABLE posts
+  ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL;
+```
+
+Explication :
+
+- Ajoute une colonne user_id de type entier (INT) non nulle à ta table posts
+- Ajoute une colonne archived_at de type DATETIME en cas de suppression d'utilisateurs
+- Ajoute une contrainte de clé étrangère (FOREIGN KEY) sur user_id qui référence la colonne id de la table users (en gros ça prend l'id de l'user)
+- Configurer la contrainte pour que, si un utilisateur est supprimé, ses tâches soient aussi supprimées (ON DELETE CASCADE).
+
+
+Attention de ce fait pour les select 
+je dois mettre
+SELECT * FROM posts WHERE archived_at IS NULL
+Sinon les message supprimés apparaitront
+
+et pour supprimer
+UPDATE posts SET archived_at = NOW() WHERE id = :id
+Pour archiver les message effacés
 
 A faire
 
-#### Base de données users et inscription
+#### Inscription
 
 A faire
 
