@@ -4,6 +4,7 @@ require_once path('/lib/csrf.php');
 $local_token = csrf_token();
 $user = 'root';
 $password = 'root';
+$user_id = $_SESSION['user_id'];
 // $user = $_ENV["DB_USER"];
 // $password = $_ENV["DB_USER"];
 $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password, [
@@ -15,10 +16,11 @@ $success = null;
 
 try {
   if (isset($_POST['name'], $_POST['content']) && csrf_check($_POST['csrf_token'])) {
-    $query = $pdo->prepare('INSERT INTO posts (name, content) VALUES (:name, :content)');
+    $query = $pdo->prepare('INSERT INTO posts (name, content, user_id) VALUES (:name, :content, :user_id)');
     $query->execute([
       'name' => $_POST['name'],
-      'content' => $_POST['content']
+      'content' => $_POST['content'],
+      'user_id' => $user_id
     ]);
     $success = 'Votre tâche a bien été ajoutée';
   }

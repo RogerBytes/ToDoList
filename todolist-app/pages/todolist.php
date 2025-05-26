@@ -1,9 +1,10 @@
 <?php
-
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
+require_once path('/lib/csrf.php');
 require_once path('class/Post.php');
 $user = 'root';
 $password = 'root';
+$user_id = $_SESSION['user_id'];
 // $user = $_ENV["DB_USER"];
 // $password = $_ENV["DB_USER"];
 $pdo = new PDO('mysql:host=mysql;dbname=todolist;charset=utf8mb4', $user, $password, [
@@ -22,7 +23,7 @@ try {
     header('Location: /pages/edit.php?id=' . $pdo->lastInsertId());
     exit();
   }
-  $query = $pdo->query('SELECT * FROM posts');
+  $query = $pdo->query("SELECT * FROM posts WHERE user_id = $user_id");
 
   /**
    * @var Post[]
@@ -49,7 +50,7 @@ require path('includes/elements/header.php');
         <a class="btn btn-danger" href="/pages/delete.php?id=<?= $post->id ?>">Supprimer</a>
       </div>
     </div>
-  <p class="small text-muted">Créée le <?= $post->getCreatedAt()->format('d/m/Y à H:i') ?></p>
+  <p class="small text-muted">Crée le <?= $post->getCreatedAt()->format('d/m/Y à H:i') ?></p>
   <p>
     <?= nl2br(htmlentities($post->getExcerpt())) ?>
   </p>

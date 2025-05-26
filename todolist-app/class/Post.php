@@ -1,8 +1,10 @@
 <?php
 class Post {
-  public $id;
-  public $name;
-  public $content;
+  public int $id;
+  public string $name;
+  public string $content;
+  public ?int $user_id = null;
+  public ?string $archived_at = null;
   public $created_at;
 
   // Retourne les 150 premiers caractères du contenu du post
