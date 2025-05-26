@@ -1,4 +1,3 @@
-
 # TodoList
 
 ## Prérequis
@@ -41,11 +40,20 @@ On lance docker-desktop et le conteneur docker avec :
 /opt/docker-desktop/bin/docker-desktop
 ```
 
-Ou manuellement avec
+Si vous avez installer docker-engine avec
 
 ```bash
-docker compose start   # Lancer les conteneurs
-docker compose stop    # Stopper les conteneurs
+sudo nala install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### Avec Docker-Engine
+
+Si vous utilisez docker-engine au lieu de docker-desktop
+
+```bash
+sudo systemctl start docker # Lance le service de docker
+docker compose start        # Lancer les conteneurs
+docker compose stop         # Stopper les conteneurs
 ```
 
 Par défaut `docker-desktop` va lancer tous nos conteneurs/piles de conteneurs (faisant ici l'équivalent d'un `docker compose start`)
@@ -208,7 +216,7 @@ ou en CLI :
 CREATE DATABASE `todolist` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */
 ```
 
-et également la table `posts` 
+et également la table `posts`
 
 ```sql
 CREATE TABLE posts (
@@ -274,7 +282,7 @@ Le `try/catch` me permet ici de gérer les erreurs () en utilisant la méthode `
 ### Sécurité dans le HTML
 
 J'utilise la function php `htmlentities()`, elle convertit les caractères spéciaux HTML (comme <, >, &, ") en entités (&lt;, &gt;, etc.), empêchant ainsi les injections de code malveillant dans la page.
-Ceci empêche les attaques XSS (Cross-Site Scripting) en s'assurant que le contenu est affiché comme du texte, empêchant toute injection de  HTML ou de JavaScript.
+Ceci empêche les attaques XSS (Cross-Site Scripting) en s'assurant que le contenu est affiché comme du texte, empêchant toute injection de HTML ou de JavaScript.
 
 ### Sécurité de connexion avec un .env
 
@@ -303,8 +311,31 @@ DB_PASSWORD="root"
 
 On ajoute ce fichier dans le .gitignore (en ajoutant une ligne `.env` dans le `.gitignore`) pour éviter de l’exposer dans un dépôt Git. Lors du déploiement, le `.env` est ensuite injecté via Docker (placé au même niveau que le `docker-compose.yml`), par exemple avec un outil d’intégration continue.
 
-### manquant d'après nolween pour le dossier
+### Implémentation tardive
 
-parler des captcha
+#### CSRF
+
+J'ai fait deux fonctions dans `lib.php`
+
+Pour les utiliser il faut insérer en début de script
+
+```php
+require_once path('/lib/csrf.php');
+$local_token = csrf_token();
+```
+
+Et dans la condition d'execution des requêtes (derrière un &&) :
+
+```php
+csrf_check($_POST['csrf_token'])
+```
+
+Il me faut ajouter un input caché dans mes formulaires (si possible en premier).
+
+```html
+<input type="hidden" name="csrf_token" value="<?= $local_token ?>">
+```
+
+Via 
 expliquer le bruteforce, quelles precautions prendre (LIMITE D'EERREUR DE MDp, CAPTCHA)
 Expliquer csrf

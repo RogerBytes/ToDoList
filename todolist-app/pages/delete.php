@@ -1,5 +1,7 @@
 <?php
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
+require_once path('/lib/csrf.php');
+$local_token = csrf_token();
 $user = 'root';
 $password = 'root';
 // $user = $_ENV["DB_USER"];
@@ -12,10 +14,9 @@ $error = null;
 $success = null;
 
 try {
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_check($_POST['csrf_token'])) {
     $query = $pdo->prepare('DELETE FROM posts WHERE id = :id');
     $query->execute([
-
       'id' => (int)$_GET['id']
     ]);
     $success = 'Votre article a bien été supprimé';
@@ -32,7 +33,6 @@ require path('includes/elements/header.php');
 
 <h2>Suppression d'une tâche</h2>
 
-
 <?php if ($success): ?>
   <div class="alert alert-success"><?= $success ?>
   </div>
@@ -43,6 +43,7 @@ require path('includes/elements/header.php');
 <h3><?= htmlentities($post->name) ?></h3>
 <p><?= htmlentities($post->content) ?></p>
 <form action="" method="post">
+  <input type="hidden" name="csrf_token" value="<?= $local_token ?>">
   <a href="/pages/todolist.php" class="btn btn-primary">Annuler la suppression</a>
   <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
 </form>
