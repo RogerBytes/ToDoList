@@ -311,11 +311,11 @@ DB_PASSWORD="root"
 
 On ajoute ce fichier dans le .gitignore (en ajoutant une ligne `.env` dans le `.gitignore`) pour éviter de l’exposer dans un dépôt Git. Lors du déploiement, le `.env` est ensuite injecté via Docker (placé au même niveau que le `docker-compose.yml`), par exemple avec un outil d’intégration continue.
 
-### Implémentation tardive
+### Implémentations tardives
 
 #### CSRF
 
-J'ai fait deux fonctions dans `lib.php`
+J'ai fait deux fonctions dans `lib.php`.
 
 Pour les utiliser il faut insérer en début de script
 
@@ -336,6 +336,14 @@ Il me faut ajouter un input caché dans mes formulaires (si possible en premier)
 <input type="hidden" name="csrf_token" value="<?= $local_token ?>">
 ```
 
-Via 
-expliquer le bruteforce, quelles precautions prendre (LIMITE D'EERREUR DE MDp, CAPTCHA)
-Expliquer csrf
+#### Limite de tentatives de connexion
+
+A faire
+
+#### Base de données users et inscription
+
+A faire
+
+#### Ajouter Captcha
+
+A faire
