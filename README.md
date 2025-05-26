@@ -347,6 +347,7 @@ Dans PhpMyAdmin, je crée la table `users`
 - password_hash
 - failed_attempts (int)
 - blocked_until (datetime, nullable)
+- archived_at (datetime, nullable)
 
 en CLI
 
@@ -357,6 +358,7 @@ CREATE TABLE `todolist`.`users` (
   `password_hash` VARCHAR(255) NOT NULL,
   `failed_attempt` INT NOT NULL DEFAULT 0,
   `blocked_until` DATETIME DEFAULT NULL,
+  `archived_at` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE (`username`)
 ) ENGINE=InnoDB;
@@ -365,27 +367,29 @@ CREATE TABLE `todolist`.`users` (
 Et je modifie la table `posts` pour y lier une clef étrangère
 
 ```sql
--- 2. Ajouter la colonne user_id dans posts, nullable
 ALTER TABLE posts ADD COLUMN user_id INT NULL AFTER id;
--- 3. Ajouter la colonne archived_at dans posts
 ALTER TABLE posts ADD COLUMN archived_at DATETIME DEFAULT NULL;
--- 4. Ajouter la contrainte de clé étrangère avec ON DELETE SET NULL
 ALTER TABLE posts
-  ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL;
+  ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+ALTER TABLE users
+  ADD COLUMN email VARCHAR(255) NOT NULL UNIQUE AFTER username;
 ```
 
 Explication :
+Ajouter la colonne user_id dans posts, nullable
+Ajouter la colonne archived_at dans posts, nullable aussi
+Ajouter la contrainte d''association de clé étrangère (et le delete en cascade, si un user est supprimé, ses post également)
+Ajouter une colonne pour l'adresse mail
 
 - Ajoute une colonne user_id de type entier (INT) non nulle à ta table posts
 - Ajoute une colonne archived_at de type DATETIME en cas de suppression d'utilisateurs
 - Ajoute une contrainte de clé étrangère (FOREIGN KEY) sur user_id qui référence la colonne id de la table users (en gros ça prend l'id de l'user)
 - Configurer la contrainte pour que, si un utilisateur est supprimé, ses tâches soient aussi supprimées (ON DELETE CASCADE).
 
-
-Attention de ce fait pour les select 
+Attention de ce fait pour les select
 je dois mettre
 SELECT * FROM posts WHERE archived_at IS NULL
-Sinon les message supprimés apparaitront
+Sinon les message supprimés apparaîtront
 
 et pour supprimer
 UPDATE posts SET archived_at = NOW() WHERE id = :id
@@ -400,3 +404,6 @@ A faire
 #### Ajouter Captcha
 
 A faire
+
+#### Présenter MCD
+
