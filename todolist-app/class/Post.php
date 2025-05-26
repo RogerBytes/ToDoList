@@ -17,7 +17,6 @@ class Post {
     $date = new DateTime($this->created_at, $utc);
     return $date->setTimezone($paris);
   }
-
 }
 
 
