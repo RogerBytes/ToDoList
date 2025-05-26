@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATO
 require_once path('/lib/csrf.php');
 $local_token = csrf_token();
 $erreur= null;
-// le mdp est John
+// le mdp des users John et Janette est John
 
 $db_user = 'root';
 $db_password = 'root';
