@@ -2,6 +2,9 @@
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'path.php';
 require_once path('/lib/csrf.php');
 require_once path('class/Post.php');
+require_once path('/lib/auth.php');
+req_connect(); // bloque les non-connectés et les redirige vers login.php
+
 $user = 'root';
 $password = 'root';
 $user_id = $_SESSION['user_id'];
