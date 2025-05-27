@@ -29,6 +29,7 @@ if (!empty($_POST['pseudo']) && !empty($_POST['password']) && csrf_check($_POST[
 require_once path('lib/auth.php');
 
 if (is_connected()){
+  
   header('Location: /index.php');
   exit();
 }
