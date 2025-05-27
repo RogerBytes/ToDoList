@@ -36,10 +36,10 @@ try {
 require path('includes/elements/header.php');
 ?>
 
-<h2>Ceci est un projet étudiant !</h2>
+<h2>Bienvenu sur ToDoList.net !</h2>
 
 <pre>
-Soyez indulgent.
+Des tâches, partout, tout le temps.
 </pre>
 
 
