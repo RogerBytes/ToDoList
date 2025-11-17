@@ -35,3 +35,4 @@ services:
       PMA_HOST: mysql
     ports:
       - "7851:80"
+
